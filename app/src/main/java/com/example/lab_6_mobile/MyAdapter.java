@@ -10,33 +10,41 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<CountryViewHolder> {
-    private List countryList;
+public class MyAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
+    private List<Article> articleList;
     LayoutInflater mInflater;
 
-    public MyAdapter (Context context, List list){
+    public MyAdapter(Context context, List<Article> list) {
         mInflater = LayoutInflater.from(context);
-        this.countryList = list;
+        this.articleList = list;
     }
 
     @NonNull
     @Override
-    public CountryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.country_layout, parent, false);
-        CountryViewHolder holder = new CountryViewHolder(view, this);
-        return holder;
-
+    public ArticleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = mInflater.inflate(R.layout.article_layout, parent, false);
+        return new ArticleViewHolder(view, this);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CountryViewHolder holder, int position) {
-        String country = (String) countryList.get(position);
-        holder.txtCountry.setText((position + 1) + "");
-        holder.txtCountry.setText(country);
+    public void onBindViewHolder(@NonNull ArticleViewHolder holder, int position) {
+        Article article = articleList.get(position);
+        holder.txtTitle.setText(article.getTitle());
+        holder.txtContent.setText(article.getContent());
+        holder.txtViews.setText("Views: " + article.getViews());
+        holder.imgCover.setImageResource(article.getImgCover());
     }
 
     @Override
     public int getItemCount() {
-        return countryList.size();
+        return articleList.size();
     }
+
+    public java.util.ArrayList<Article> getArticleList() {
+        return (java.util.ArrayList<Article>) articleList;
+    }
+
+//    public Article getArticleAt(int position) {
+//        return articleList.get(position);
+//    }
 }
