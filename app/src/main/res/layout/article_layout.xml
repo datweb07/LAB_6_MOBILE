@@ -19,6 +19,7 @@
 
         <TextView
             android:id="@+id/txtTitle"
+            android:justificationMode="inter_word"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Title"
@@ -30,6 +31,7 @@
 
         <TextView
             android:id="@+id/txtContent"
+            android:justificationMode="inter_word"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Content..."
